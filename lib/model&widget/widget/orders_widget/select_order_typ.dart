@@ -1,4 +1,5 @@
 
+import 'package:elfardos/core/appTheme/colorTheme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,7 +27,7 @@ class OrdersTyp extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text("Choose how to receive the order  ! ",style:
-              Theme.of(context).textTheme.bodyMedium, ),
+              Theme.of(context).textTheme.bodySmall, ),
               CircleAvatar(
                 radius:MediaQuery.of(context).size.height*0.02,
                 backgroundColor: Colors.white,
@@ -49,7 +50,7 @@ class OrdersTyp extends StatelessWidget {
                       onTap: () {
                         _controllerOrders.selectOrderTyp(id: 0);
                       },
-                      containerColor:_controllerOrders.ordersData.ordersTyp==0?Colors.red: Colors.white,
+                      containerColor:_controllerOrders.ordersData.ordersTyp==0?ColorTheme.themeColor: Colors.white,
                       titleColor:_controllerOrders.ordersData.ordersTyp==0?Colors.white: Colors.grey ,),
                   ),
                   SizedBox(
@@ -61,7 +62,7 @@ class OrdersTyp extends StatelessWidget {
                       onTap: () {
                         _controllerOrders.selectOrderTyp(id: 1);
                       },
-                      containerColor:_controllerOrders.ordersData.ordersTyp==1?Colors.red: Colors.white,
+                      containerColor:_controllerOrders.ordersData.ordersTyp==1?ColorTheme.themeColor: Colors.white,
                       titleColor:_controllerOrders.ordersData.ordersTyp==1?Colors.white: Colors.grey ,),
                   ),
 
@@ -69,15 +70,24 @@ class OrdersTyp extends StatelessWidget {
               )
           ),
           SizedBox(height: MediaQuery.of(context).size.height*0.02,),
-
           Opacity(
             opacity:_controllerOrders.ordersData.ordersTyp == null ? 0.2 :0.9,
             child:   SizedBox(
               width:MediaQuery.of(context).size.width*0.85,
               child:    CustombButton('Next',(){
-                _controllerOrders.onTapPagView();
-                //      controller.signIn();
-                //  Get.offAllNamed(pBottomBar);
+                if(_controllerOrders.ordersData.ordersTyp ==0 ){
+                  _controllerOrders.currentPage++;
+                  _controllerOrders.update();
+                  print( _controllerOrders.currentPage);
+                  print('ordersTyp ==0');
+                }else if(_controllerOrders.ordersData.ordersTyp ==1){
+                 print( _controllerOrders.currentPage);
+                 print('ordersTyp ==1');
+                  _controllerOrders.currentPage = 2;
+                  _controllerOrders.update();
+                }else{
+                  return ;
+                }
               },4),
             ),),
         ],

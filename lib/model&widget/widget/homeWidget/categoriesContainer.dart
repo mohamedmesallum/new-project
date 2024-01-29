@@ -1,4 +1,5 @@
 
+import 'package:elfardos/core/appTheme/colorTheme.dart';
 import 'package:flutter/material.dart';
 
 class ContainerCategories extends StatelessWidget {
@@ -17,7 +18,9 @@ class ContainerCategories extends StatelessWidget {
       child: Container(
         padding:const  EdgeInsets.all(4),
         decoration: BoxDecoration(
-            color: Colors.grey[100],
+            color: ColorTheme.backGroundGrey
+            ,
+
             borderRadius: BorderRadius.circular(18)
         ),
         child:Row(
@@ -29,7 +32,7 @@ class ContainerCategories extends StatelessWidget {
             Text(
               name
               ,style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color:Colors.red[900]
+                color:ColorTheme.themeColor
             ),),
 
           ],

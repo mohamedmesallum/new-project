@@ -222,6 +222,7 @@ update();
   cart!.data!.forEach((element) {
     if(element.idProducts==idProducts){
       element.count = countNew;
+      update();
     }
 
   });

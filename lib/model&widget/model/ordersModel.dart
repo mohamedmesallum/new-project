@@ -30,17 +30,21 @@ class OrdersModel {
 class Orders {
   int? idOrders;
   int? idUser;
-  int? priceOrders;
+  dynamic? priceOrders;
   int? idAddress;
   int? couponOrder;
   int? statusOrder;
   int? paymentMethod;
+  int? cardTyp;
   String? createdAt;
   String? updatedAt;
   int? ordersTyp;
+  String? phone ;
 
   Orders(
       {this.idOrders,
+        this.cardTyp,
+        this.phone,
         this.idUser,
         this.priceOrders,
         this.idAddress,
@@ -62,7 +66,10 @@ class Orders {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     ordersTyp = json['orders_typ'];
+    phone = json['phone_order'];
+    cardTyp = json['card_typ'];
   }
+
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
@@ -76,6 +83,8 @@ class Orders {
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
     data['orders_typ'] = this.ordersTyp;
+    data['phone_order'] = this.phone;
+    data['card_typ'] = this.cardTyp;
     return data;
   }
 }

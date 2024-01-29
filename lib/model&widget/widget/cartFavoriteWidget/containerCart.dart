@@ -28,21 +28,22 @@ class _ContainerCartState extends State<ContainerCart> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height:widget.boxConstraints.maxHeight*0.22 ,
+    //  height:widget.boxConstraints.maxHeight*0.22 ,
       child: Card(
         shadowColor: Colors.grey,
         color: Colors.white,
         elevation: 2,
         child: Row(
           children: [
-            Container(
-              width: widget.boxConstraints.maxWidth*0.35,
-              decoration:  BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(widget.image),
-                  )
-              ),
-            ),
+           Container(
+             height:widget.boxConstraints.maxHeight*0.22,
+            width: widget.boxConstraints.maxWidth*0.35,
+             decoration:  BoxDecoration(
+                 image: DecorationImage(
+                   image: NetworkImage(widget.image),
+                 )
+             ),
+           ),
             Container(
 
               width: widget.boxConstraints.maxWidth*0.55,
@@ -52,7 +53,7 @@ class _ContainerCartState extends State<ContainerCart> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(widget.name,style: Theme.of(context).textTheme.bodyMedium,),
+                    Text(widget.name,style: Theme.of(context).textTheme.bodySmall,),
                     SizedBox(
                       width: widget.boxConstraints.maxWidth*0.55,
                       child:  Text(widget.description,
@@ -108,6 +109,7 @@ class _ContainerCartState extends State<ContainerCart> {
                                    widget.count --;
                                  }
                                    _cartFavorites. addMunsCount(idProducts: widget.id, countNew: widget.count);
+
                         });
 
                       },

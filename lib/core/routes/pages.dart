@@ -16,6 +16,8 @@ import '../../view/address/my_address.dart';
 import '../../view/home/viewCategories.dart';
 import '../../view/orders/my_orders.dart';
 import '../../view/orders/order_details.dart';
+import '../../view/orders/tracking.dart';
+import '../../view/profile/edit_profile.dart';
 import '../../view/profile/profile.dart';
 import '../../view/profile/settings.dart';
 import '../biding/biding.dart';
@@ -32,11 +34,13 @@ List<GetPage> routes=[
   GetPage(name: pViewProducts, page: ()=>const ViewProducts(),binding: BidingControllerViewProduct()),
   GetPage(name: pCategoriesView, page: ()=> CategoriesView(),binding: BidingControllerCategories()),
   GetPage(name: pProfile , page:()=>Profile()),
+  GetPage(name: pEditProfile , page:()=>EditProfile()),
   GetPage(name: pSettings, page: ()=>Settings()),
   GetPage(name: pAllOrders ,page: ()=>AllOrders()),
   GetPage(name: pOrderDetails ,page: ()=>OrderDetails()),
   GetPage(name: pMyAddress, page: ()=>MyAddress()),
 GetPage(name: pAddNewAddress, page: ()=>AddNewAddress()),
   GetPage(name: pMyOrders, page: ()=>MyOrders()),
+  GetPage(name: pTracking, page:()=>Tracking()),
 //
 ];

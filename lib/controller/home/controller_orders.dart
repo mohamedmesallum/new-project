@@ -1,5 +1,6 @@
 import 'package:elfardos/controller/controllerLogin/controllerLogin.dart';
 import 'package:elfardos/core/data/function_orders.dart';
+import 'package:elfardos/core/routes/namePages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,21 +17,26 @@ abstract class OrdersController extends GetxController{
   selectIdAddress({required int id});
   selectOrderTyp({required int id});
   selectPaymentMethod({required int id});
+  selectTypCard({required int id});
   getOneOrder({required String idOrder ,required String idAddress});
   Future addOrders();
   Future getOrders();
 }
 class ControllerOrders extends OrdersController{
-ControllerCartFavorites _controllerCartFavorites = Get.find();
+
 late FunctionOrders _functionOrders = FunctionOrders(Get.find());
 ControllerLogin _controllerLogin = Get.find();
 ControllerCartFavorites _cartFavorites = Get.find();
+var controllerPhone = TextEditingController();
 Orders ordersData = Orders();
 DetailsOrderModel? detailsOrderModel;
 OrdersModel? orders ;
 late PageController controllerPage;
 int currentPage = 0;
+ int? typCard = 0;
 late StatusRequest statusRequest;
+ StatusRequest? statusRequestAddOrders;
+late StatusRequest statusRequestOrderDetails;
 AllOrdersModel? allOrdersModel;
 
 void onTapPagView(){
@@ -46,6 +52,7 @@ void onTapPagView(){
           currentPage++;
           update();
         }
+
         update();
     print(currentPage);
   }
@@ -66,6 +73,8 @@ void onTapPagView(){
   @override
   selectOrderTyp({required int id}) {
     ordersData.ordersTyp = id;
+    ordersData.priceOrders=_cartFavorites.totalPriceCart;
+    ordersData.idUser=_controllerLogin.userData.user!.id;
     print( ordersData.ordersTyp);
     update();
   }
@@ -80,40 +89,43 @@ update();
   @override
   Future addOrders()async {
   try{
-    statusRequest = StatusRequest.loading;
+    statusRequestAddOrders = StatusRequest.loading;
     update();
     var response = await _functionOrders.addOrders(data:{
       'id_user':_controllerLogin.userData.user!.id!.toString(),
-      'price_orders':'${_cartFavorites.totalPriceCart.toString()}',
-      'id_address':'${ordersData.idAddress.toString()}',
+      'price_orders':'${_cartFavorites.totalPriceCart}',
+      'id_address':ordersData.idAddress!=null ? '${ordersData.idAddress}':'',
       'coupon_order':'77',
-      'payment_method':'${ordersData.paymentMethod.toString()}',
-      'orders_typ':'${ordersData.ordersTyp.toString()}'
+      'payment_method':'${ordersData.paymentMethod}',
+      'orders_typ':'${ordersData.ordersTyp}',
+     'phone_order':'${ordersData.phone}',
+      'card_typ':ordersData.cardTyp!=null?'${ordersData.cardTyp}':'',
     } );
-
-    statusRequest = handlingData(response);
-    if(statusRequest==StatusRequest.success){
+    print(response);
+    statusRequestAddOrders = handlingData(response);
+    if(statusRequestAddOrders==StatusRequest.success){
       if(response['status']==200){
      print('oooooooooooooooooooooooooooooooooooooooooooooooooooooop');
-     _controllerCartFavorites.cartMap.clear();
+     _cartFavorites.cartMap.clear();
      _cartFavorites.getCart();
+     Get.offAllNamed(pBottomBar);
         print(response);
       // orders = OrdersModel.fromJson(response);
        //print(orders!.message!);
        update();
       }else{
-        print(statusRequest);
-        statusRequest = StatusRequest.serverFailure;
+        print(statusRequestAddOrders);
+        statusRequestAddOrders = StatusRequest.serverFailure;
       }
       update();
     }else{
-      print(statusRequest);
-      return statusRequest;
+      print(statusRequestAddOrders);
+      return statusRequestAddOrders;
     }
     update();
   }catch(e){
-    statusRequest = StatusRequest.failure;
-    print(statusRequest);
+    statusRequestAddOrders = StatusRequest.failure;
+    print(statusRequestAddOrders);
     print(e.toString());
   }
 
@@ -151,38 +163,49 @@ update();
   @override
   getOneOrder({required String idOrder, required String idAddress})async {
   try{
-    statusRequest = StatusRequest.loading;
+    statusRequestOrderDetails = StatusRequest.loading;
     var response = await _functionOrders.getOneOrder(data: {
-      'id_user':'66',
-      'id_orders':'46'
+      'id_user':'${_controllerLogin.userData.user!.id!}',
+      'id_orders':'${idOrder}',
+      'id_addres':idAddress != ''?'${idAddress}':'',
     });
-    statusRequest = handlingData(response);
-    if(statusRequest==StatusRequest.success){
+    statusRequestOrderDetails = handlingData(response);
+    if(statusRequestOrderDetails==StatusRequest.success){
       if(response['status']==200){
         detailsOrderModel = DetailsOrderModel.fromJson(response);
         print(detailsOrderModel!.data![0].nameAr);
         print('zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz');
       }else{
-        statusRequest = StatusRequest.failure;
+        statusRequestOrderDetails = StatusRequest.failure;
         print('status != 200');
         print('sssssssssssssssssssssssssssssssssrr');
         update();
       }
     }else{
-      print(statusRequest);
+      print(statusRequestOrderDetails);
       print("sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss not sussies");
       update();
     }
     update();
   }catch(e){
     print(e.toString());
-    statusRequest = StatusRequest.failure;
+    statusRequestOrderDetails = StatusRequest.failure;
     print('error catttttttttttttttttttttttttttttttttsh');
     update();
     }
   update();
   }
 
+  @override
+  selectTypCard({required int id}) {
+ ordersData.cardTyp = id;
+  update();
+  print(typCard);
+  }
+
+void ccc(){
+ print(ordersData.toJson());
+}
 
 
 }

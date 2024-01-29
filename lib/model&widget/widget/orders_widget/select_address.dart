@@ -14,11 +14,7 @@ import 'chose_orders_details.dart';
 class SelectAddress extends StatelessWidget {
 
   SelectAddress ({Key? key}) : super(key: key);
-List<String> address = [
-  'Home',
-  'Work',
-  'Home Tow'
-];
+
 ControllerOrders _controller = Get.find();
   @override
   Widget build(BuildContext context) {
@@ -61,7 +57,7 @@ ControllerOrders _controller = Get.find();
                 title: _controllerAddress.addresses.data![i].name!, onTap: () {
                 _controller.selectIdAddress(id:_controllerAddress.addresses.data![i].idAddres!);
               },
-                containerColor:_controller.ordersData.idAddress==_controllerAddress.addresses.data![i].idAddres ? Colors.red:Colors.white,
+                containerColor:_controller.ordersData.idAddress==_controllerAddress.addresses.data![i].idAddres ? ColorTheme.themeColor:Colors.white,
                 titleColor: _controller.ordersData.idAddress==_controllerAddress.addresses.data![i].idAddres ?Colors.white: Colors.grey,);
             },
           ),
@@ -103,21 +99,32 @@ ControllerOrders _controller = Get.find();
                   child:   SizedBox(
                     width: MediaQuery.of(context).size.width*0.85,
                     child:    CustombButton('Next',(){
-                      _controller.onTapPagView();
+                      if(_controller.ordersData.idAddress != null){
+                        _controller.currentPage++;
+                        _controller.update();
+                      }else{
+                        return ;
+                      }
+
 
                     },4),
                   ),),
 
           SizedBox(height: MediaQuery.of(context).size.height*0.02),
-          profileWidget(
-              const   Icon(Icons.arrow_forward_ios,size: 18,),
-              onTap:(){
+   GetBuilder<ControllerMaps>(
+       builder: (_controllerMaps){
+     return        profileWidget(
+         _controllerMaps.statusRequest==StatusRequest.loading?
+         Center(child: CircularProgressIndicator(color: ColorTheme.themeColor,),):
+         const   Icon(Icons.arrow_forward_ios,size: 18,),
+         onTap:(){
 
-              } ,
-              titel: 'My addresses',
-              icons: Icons.home ,
-              context: context
-          ),
+         } ,
+         titel: 'My addresses',
+         icons: Icons.home ,
+         context: context
+     );
+   })
 
 
 

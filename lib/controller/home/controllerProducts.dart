@@ -75,7 +75,7 @@ try{
     update();
     var response = await functionProducts.addReview(data: {
       'id_product':'${Get.parameters[ 'idProducts']}',
-      'id_user':_controllerLogin.userData!.user!.id!,
+      'id_user':'${_controllerLogin.userData!.user!.id!}',
       'ratings':rate.toString(),
       'comment':commentController.text
     });
@@ -101,6 +101,7 @@ try{
     update();
     print(e.toString());
   }
+  print(statusRequest);
   }
 
   @override

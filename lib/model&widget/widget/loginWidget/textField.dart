@@ -28,10 +28,13 @@ class Field extends StatelessWidget {
           validator: valid,
           keyboardType:keyboard,
 
+
           style:Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: Colors.black,fontSize: 17
           ),
           decoration: InputDecoration(
+            errorMaxLines: 2,
+
             filled: true,
 
               errorStyle:Theme.of(context).textTheme.bodySmall?.copyWith(

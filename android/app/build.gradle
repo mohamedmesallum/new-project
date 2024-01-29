@@ -47,7 +47,7 @@ android {
         applicationId "com.example.elfardos"
         // You can update the following values to match your application needs.
         // For more information, see: flutter doctor --android-licenses.
-        minSdkVersion 20
+        minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName

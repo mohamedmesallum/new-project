@@ -27,6 +27,12 @@
               />
 
             <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <data android:scheme="sms" />
+                <action android:name="android.intent.action.VIEW" />
+                <data android:scheme="tel" />
+                <action android:name="android.support.customtabs.action.CustomTabsService" />
+
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
@@ -38,5 +44,7 @@
             android:value="2" />
        <meta-data android:name="com.google.android.geo.API_KEY"
                   android:value="AIzaSyDhP_ulEKhJj8g3GVq0W1v1tKbJmHZxF90"/>
+
     </application>
+
 </manifest>

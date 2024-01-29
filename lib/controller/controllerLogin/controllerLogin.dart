@@ -17,8 +17,8 @@ abstract class LoginController extends GetxController{
 class ControllerLogin extends LoginController{
   FunctionLogin functionLogin = FunctionLogin(Get.put(Method()));
  late UserData userData;
-  StatusRequest? statusRequestSignIn ;
-  StatusRequest? statusRequestSignUp;
+  StatusRequest? statusRequestSignIn ,statusRequestSignUp ;
+
   var controllerEmailSignIn = TextEditingController();
   var controllerPasswordSignIn = TextEditingController();
   var controllerEmailSignUp = TextEditingController();
@@ -41,6 +41,7 @@ class ControllerLogin extends LoginController{
     'password':controllerPasswordSignIn.text,
   });
      statusRequestSignIn = handlingData(response);
+     print(statusRequestSignIn);
      update();
      if(statusRequestSignIn==StatusRequest.success){
        if(response['status']==200){
@@ -84,6 +85,7 @@ print(e.toString());
 
   }
   }
+  update();
   }
 
   @override

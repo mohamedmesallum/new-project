@@ -10,9 +10,10 @@ const String pViewProducts = '/ViewProducts';
 const String pCategoriesView = '/CategoriesView';
 const String pProfile = '/Profile';
 const String pSettings = '/Settings';
+const String pEditProfile = '/EditProfile';
 const String pAllOrders ='/AllOrders';
 const String pOrderDetails ='/OrderDetails';
 const String pMyAddress = '/MyAddress';
 const String pAddNewAddress = '/AddNewAddress';
 const String pMyOrders = '/MyOrders';
-
+const String pTracking = '/Tracking';

@@ -62,7 +62,7 @@ class _CartState extends State<Cart> {
                    Expanded(child: SingleChildScrollView(
                      child:  Container(
                        padding:const  EdgeInsets.symmetric(horizontal: 8,vertical: 5),
-                       height: boxSize.maxHeight*0.60,
+                       height: boxSize.maxHeight*0.53,
                        width:  boxSize.maxWidth,
                        child:  ListView.separated(
                            separatorBuilder: (context,i)=>SizedBox(height: boxSize.maxHeight*0.01,),
@@ -79,16 +79,13 @@ class _CartState extends State<Cart> {
                                  description: '_cartFavorites.cart!.data![i].description! _cartFavorites.cart!.data![i].description! _cartFavorites.cart!.data![i].description!',
                                  count:_cartFavorites.cart!.data![i].count!,
                                );
-
                            }
                        ),
-
-
                      ),
                    ),),
                         Center(child: Container(
-                          padding: EdgeInsets.symmetric(horizontal: 8),
-                        //  height: boxSize.maxHeight*0.38,
+                          padding:const  EdgeInsets.symmetric(horizontal: 8),
+                        height: boxSize.maxHeight*0.45,
                           width:  boxSize.maxWidth*0.95,
                           child:  Column(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -111,11 +108,9 @@ class _CartState extends State<Cart> {
                                       SizedBox(width: boxSize.maxWidth*0.02,),
                                       Padding(padding: const EdgeInsets.symmetric(horizontal: 0,vertical: 0),
                                         child:  Text('Apply',style: Theme.of(context).textTheme.headlineMedium?.
-                                        copyWith(color: Colors.blue),textAlign:TextAlign.center,),),
+                                        copyWith(color: ColorTheme.themeColor),textAlign:TextAlign.center,),),
                                     ],
                                   )
-
-
                                 ],
                               ),
                               SizedBox(height: boxSize.maxHeight*0.02,),
@@ -135,7 +130,7 @@ class _CartState extends State<Cart> {
                                   Text('Sup total',style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                                       color: Colors.black
                                   ),),
-                                  Text(' \$ ${_cartFavorites.totalPriceCart.toStringAsFixed(2)}  ',style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                  Text(_cartFavorites.totalPriceCart!=null?' \$ ${_cartFavorites.totalPriceCart.toStringAsFixed(2)}  ':'',style: Theme.of(context).textTheme.bodySmall?.copyWith(
                                       color: Colors.black87
                                   ),),
                                 ],
@@ -174,7 +169,7 @@ class _CartState extends State<Cart> {
                                       Get.toNamed(pAllOrders);
                                     // _cartFavorites.FItemsCount();
                                         },
-                                    8),
+                                    2),
                               ),
                               SizedBox(height: boxSize.maxHeight*0.03,),
 

@@ -43,9 +43,7 @@ class SignIn extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 3),
-                              child:    Field(
+                                Field(
                                 const  Icon(Icons.email,color:  Colors.black45,size: 18),
                                 null ,
                                 namehient:'Email',
@@ -57,7 +55,7 @@ class SignIn extends StatelessWidget {
                                 },
 
                                 keyboard:TextInputType.emailAddress ,),
-                            ),
+
                             SizedBox(height: boxConstraints.minHeight*0.02,),
                             Container(
                               padding: const EdgeInsets.symmetric(horizontal: 3),

@@ -46,19 +46,19 @@ const  ProductsContainerHome ({Key? key, required this.boxContainer, required th
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 discount != 0?
-                Container(
-                  alignment: Alignment.center,
-                  height: boxContainer.maxHeight*0.10,
-                  // width: boxContainer.maxWidth*0.25,
-                  padding: const EdgeInsets.all(4),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: Colors.red[300],
-                  ),
-                  child: Text('discount',style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: Colors.white,fontSize: 12
-                  ),),
-                ):const SizedBox(),
+               Opacity(opacity: 0.5,child:  Container(
+                 alignment: Alignment.center,
+                 height: MediaQuery.of(context).size.height*0.04,
+                 // width: boxContainer.maxWidth*0.25,
+                 padding: const EdgeInsets.all(4),
+                 decoration: BoxDecoration(
+                     borderRadius: BorderRadius.circular(8),
+                     color: ColorTheme.themeColor
+                 ),
+                 child: Text('discount',style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                     color: Colors.white,fontSize: 14
+                 ),),
+               ),):const SizedBox(),
 
             GetBuilder<ControllerCartFavorites>(
                 builder: (_c){
@@ -84,8 +84,9 @@ const  ProductsContainerHome ({Key? key, required this.boxContainer, required th
                   child:
                   SizedBox(
                     width: boxContainer.maxWidth*0.70,
-                    child:  Text(name,style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    ),overflow: TextOverflow.ellipsis,maxLines: 1,),
+                    child:  Text(name,style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                      color: Colors.black87
+                    ),overflow: TextOverflow.ellipsis,maxLines: 2,),
                   ),
                 ),
             GetBuilder<ControllerCartFavorites>(

@@ -9,10 +9,10 @@ import 'checkInternet.dart';
 
 class Method{
 
-  Future<Either<StatusRequest,Map>> postData({required String url,required Map data})async{
+  Future<Either<StatusRequest,Map>> postData({Map<String,String>? headers,required String url,required Map data})async{
 try{
   if(await checkInInternet()){
-    var response = await http.post(Uri.parse(url),body:data);
+    var response = await http.post(Uri.parse(url),body:data,headers:headers);
     if(response.statusCode==200 || response.statusCode==201 ){
       Map responseBody = jsonDecode(response.body);
       return  Right(responseBody);

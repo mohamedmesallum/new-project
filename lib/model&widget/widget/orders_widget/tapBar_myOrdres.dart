@@ -15,7 +15,8 @@ class TabBarOrders extends StatelessWidget {
         child: TabBar(
           physics:const  ClampingScrollPhysics(),
           indicatorSize: TabBarIndicatorSize.label,
-          padding: const EdgeInsets.all(10),
+
+          padding: const EdgeInsets.all(8),
           indicator: BoxDecoration(
             boxShadow:const  [BoxShadow(color:Colors.grey,spreadRadius: 0.6,blurRadius: 7)],
               color: Colors.grey[400],
@@ -23,12 +24,12 @@ class TabBarOrders extends StatelessWidget {
               // border: Border.all(color: Colors.white,width: 0),
               borderRadius: BorderRadius.circular(25)
           ),
-          labelStyle:Theme.of(context).textTheme.headlineMedium,
+          labelStyle:Theme.of(context).textTheme.bodySmall,
           labelColor: Colors.white,
           unselectedLabelColor:  Colors.black,
           isScrollable: true,
           unselectedLabelStyle:Theme.of(context).textTheme.bodySmall?.copyWith(
-              fontSize: 14,fontWeight: FontWeight.w800
+             fontWeight: FontWeight.w700
           ),
           tabs: [
             Container(

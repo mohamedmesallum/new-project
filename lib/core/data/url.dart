@@ -1,4 +1,5 @@
 const String pathUrl = "http://10.0.2.2:8000";
+const String pathImageUrl = 'http://10.0.2.2:8000/images/';
 const String signInUrl = '$pathUrl/api/auth/login';
 const String signUpUrl ='$pathUrl/api/auth/register';
 const String getDataHome = '$pathUrl/api/getData';

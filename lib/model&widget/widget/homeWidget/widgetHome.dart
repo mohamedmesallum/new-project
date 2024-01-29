@@ -6,7 +6,7 @@ Widget seeAll({required BuildContext context , required Function() onTap,require
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(title,style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+        Text(title,style: Theme.of(context).textTheme.headlineMedium?.copyWith(
             color: Colors.black
         ),),
         InkWell(

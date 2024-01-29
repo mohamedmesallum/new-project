@@ -36,7 +36,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  http: ^0.13.5
+  http: ^1.2.0
   get: ^4.6.6
   shared_preferences: ^2.0.17
   dartz: ^0.10.1
@@ -50,6 +50,8 @@ dependencies:
   lottie: ^2.5.0
   google_maps_flutter: ^2.5.0
   geolocator: ^10.1.0
+  flutter_polyline_points: ^2.0.0
+  url_launcher: ^6.2.2
 
 dev_dependencies:
   flutter_test:
@@ -94,12 +96,12 @@ flutter:
   fonts:
     - family: Lato
       fonts:
-        - asset: fonts/Lato-Black.ttf
+        - asset: fonts/Cairo-Regular.ttf
         - asset: fonts/Lato-Light.ttf
     #         style: italic
     - family: Cairo
       fonts:
-        - asset: fonts/Cairo-Light.ttf
+        - asset: fonts/Cairo-Regular.ttf
         - asset: fonts/Cairo-Medium.ttf
   #         weight: 700
   #

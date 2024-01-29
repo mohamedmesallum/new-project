@@ -1,9 +1,13 @@
 
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:elfardos/core/function/statusRequest.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../controller/home/controller_orders.dart';
+import '../../../core/appTheme/colorTheme.dart';
 import '../loginWidget/bottom.dart';
+import '../loginWidget/dialogWidget.dart';
 import '../profile/profileWidget.dart';
 import 'chose_orders_details.dart';
 
@@ -46,7 +50,7 @@ class PaymentMethod extends StatelessWidget {
                       onTap: () {
                         _controllerOrders.selectPaymentMethod(id: 0);
                       },
-                      containerColor:_controllerOrders.ordersData.paymentMethod==0?Colors.red: Colors.white,
+                      containerColor:_controllerOrders.ordersData.paymentMethod==0?ColorTheme.themeColor: Colors.white,
                       titleColor:_controllerOrders.ordersData.paymentMethod==0?Colors.white: Colors.grey ,),
                   ),
                   SizedBox(
@@ -58,7 +62,7 @@ class PaymentMethod extends StatelessWidget {
                       onTap: () {
                         _controllerOrders.selectPaymentMethod(id: 1);
                       },
-                      containerColor:_controllerOrders.ordersData.paymentMethod==1?Colors.red: Colors.white,
+                      containerColor:_controllerOrders.ordersData.paymentMethod==1?ColorTheme.themeColor: Colors.white,
                       titleColor:_controllerOrders.ordersData.paymentMethod==1?Colors.white: Colors.grey ,),
                   ),
 
@@ -66,13 +70,36 @@ class PaymentMethod extends StatelessWidget {
               )
           ),
           SizedBox(height: MediaQuery.of(context).size.height*0.02,),
-
+          _controllerOrders.statusRequestAddOrders==StatusRequest.loading?
+          Center(child: CircularProgressIndicator(color: ColorTheme.themeColor,),):
           Opacity(
             opacity:_controllerOrders.ordersData.paymentMethod ==  null ? 0.2 :0.9,
             child:   SizedBox(
               width: MediaQuery.of(context).size.width*0.85,
-              child:    CustombButton('Next',(){
-                _controllerOrders.addOrders();
+              child:    CustombButton(_controllerOrders.ordersData.paymentMethod==1?'Next':'Check Out',(){
+                if(_controllerOrders.ordersData.paymentMethod==1){
+                  print('order Credit Card ');
+                _controllerOrders.currentPage++;
+                _controllerOrders.update();
+                }else if(_controllerOrders.ordersData.paymentMethod==0){
+                  dialogError(
+                    _controllerOrders.statusRequestAddOrders==StatusRequest.loading?
+                       Center(child: CircularProgressIndicator(color: ColorTheme.themeColor,),):
+                    CustombButton(
+                        'Ok ',
+                            () {
+                          _controllerOrders.addOrders();
+
+                        },
+                        2),
+                    context: context, title: 'You have completed the information,\n When you click OK, the request will be sent', dialogType:DialogType.success
+
+                  );
+                //  _controllerOrders.addOrders();
+                }else{
+                  return ;
+                }
+              //  _controllerOrders.addOrders();
                 //      controller.signIn();
                 //  Get.offAllNamed(pBottomBar);
               },4),

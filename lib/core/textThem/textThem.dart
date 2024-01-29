@@ -41,12 +41,13 @@ ThemeData themeDataEn= ThemeData(
 );
 
 ThemeData themeDataAr= ThemeData(
+ // fontFamily: 'Lato',
 fontFamily: 'Cairo',
   textTheme: const TextTheme(
     bodySmall: TextStyle(
-        fontWeight: FontWeight.w900,
+        fontWeight: FontWeight.w800,
         color:Colors.black,
-        fontSize: 13
+        fontSize: 12
     ),
     headlineSmall: TextStyle(
         fontWeight: FontWeight.w900,
@@ -70,7 +71,7 @@ fontFamily: 'Cairo',
       fontSize: 18
   ),
     bodyMedium:  TextStyle(
-        fontWeight: FontWeight.w900,
+        fontWeight: FontWeight.w700,
         color:Colors.black,
         fontSize: 14
     ),

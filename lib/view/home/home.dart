@@ -38,7 +38,7 @@ class Home extends StatelessWidget {
                         return ListView(
                           physics:const  BouncingScrollPhysics(),
                           children: [
-                            // SizedBox(height: boxConstraints.maxHeight*0.01,),
+                          SizedBox(height: boxConstraints.maxHeight*0.02,),
                             Card(
                               shadowColor: ColorTheme.themeColor,
                               elevation: 2,
@@ -47,9 +47,11 @@ class Home extends StatelessWidget {
                                 height: boxConstraints.maxHeight*0.25,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
-                                    image: const DecorationImage(
-                                        fit: BoxFit.fill,
-                                        image: NetworkImage('$pathUrl/public/storage/Banner/Screenshot_1670532343.png')
+                                    image:  DecorationImage(
+                                      fit: BoxFit.cover,
+//http://10.0.2.2:8000/images/userImage.jpg
+                                        //$pathUrl/images/${_controller.homeModel!.banner![i].image}
+                                        image: NetworkImage('https://buylebanese.com/database/photos/128b.jpg')
                                         //\cors\fierst\storage\app/public
 //\cors\fierst\public\user/carts.png  //$pathUrl/storage/app/images/user/carts.png
 
